@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Show da Madonna em Copacabana 2024 — Matriz AxR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#B8860B;--gold-light:#fef9ec;--gold-dark:#7a5800;
+  --plum:#5B2E6A;--plum-light:#f3eef6;--plum-dark:#3a1c44;
+  --rose:#C0395B;--rose-light:#fceef2;--rose-dark:#7a1e38;
+  --gray:#3d3d3a;--gray-light:#f7f6f2;--gray-mid:#e8e6e0;
+  --RP-bg:#fef9ec;--RP-text:#7a5800;--RP-border:#B8860B;
+  --R-bg:#fceef2;--R-text:#7a1e38;--R-border:#C0395B;
+  --A-bg:#f3eef6;--A-text:#3a1c44;--A-border:#5B2E6A;
+  --font-display:'Playfair Display',serif;
+  --font-body:'Inter',sans-serif;
+  --shadow:0 2px 12px rgba(0,0,0,.08);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.16);
+  --radius:10px;--radius-lg:14px;
+}
+body{font-family:var(--font-body);background:#f7f6f2;color:var(--gray);min-height:100vh}
+
+/* ── HEADER ── */
+.header{background:linear-gradient(135deg,#1a0a22 0%,#2d1040 50%,#1a0a22 100%);color:white;padding:0;border-bottom:2px solid var(--gold)}
+.header-inner{max-width:1200px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;gap:20px}
+.logo-circle{width:56px;height:56px;background:linear-gradient(135deg,var(--gold),#e8c060);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:24px}
+.header-text h1{font-family:var(--font-display);font-size:22px;font-weight:900;letter-spacing:-.2px;line-height:1.1;color:#f5e6b0}
+.header-text p{font-size:12px;color:#aaa;margin-top:4px;font-family:var(--font-body)}
+.header-meta{margin-left:auto;display:flex;gap:16px;flex-shrink:0}
+.meta-pill{background:rgba(255,255,255,.07);border:1px solid rgba(184,134,11,.3);border-radius:8px;padding:8px 16px;text-align:center}
+.meta-pill strong{display:block;font-family:var(--font-display);font-size:20px;font-weight:700;color:#f5e6b0}
+.meta-pill span{font-size:11px;color:#888}
+
+/* ── TABS ── */
+.tabs-bar{background:white;border-bottom:1px solid var(--gray-mid);position:sticky;top:0;z-index:50}
+.tabs-inner{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;gap:0}
+.tab-btn{padding:14px 20px;font-size:13px;font-weight:500;border:none;background:none;cursor:pointer;color:#888;border-bottom:2px solid transparent;transition:all .15s;font-family:var(--font-body);white-space:nowrap}
+.tab-btn:hover{color:var(--gray)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── CONTAINER ── */
+.main{max-width:1200px;margin:0 auto;padding:28px 32px}
+.section{display:none}
+.section.active{display:block}
+
+/* ── METRICS ── */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px}
+.metric-card{background:white;border-radius:var(--radius-lg);padding:16px 18px;border:1px solid var(--gray-mid)}
+.metric-val{font-family:var(--font-display);font-size:28px;font-weight:700;color:#1a0a22;line-height:1}
+.metric-lab{font-size:12px;color:#888;margin-top:4px}
+.metric-sub{font-size:11px;color:#bbb;margin-top:2px}
+
+/* ── CARDS GRID ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:700px){
+  .two-col{grid-template-columns:1fr}
+  .header-meta{display:none}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+  .modal{max-width:calc(100vw - 24px)}
+  .modal-overlay{padding:12px}
+  .modal-header{padding:16px 18px}
+  .modal-body{padding:16px 18px}
+  .modal-footer{padding:12px 18px}
+  .modal-title{font-size:15px}
+  .ops-grid{grid-template-columns:1fr}
+  .orgs-grid{grid-template-columns:1fr}
+  .tabs-inner{padding:0 12px}
+  .tab-btn{padding:12px 10px;font-size:12px}
+  .main{padding:20px 14px}
+  .header-inner{padding:20px 16px}
+  .hero-text h1{font-size:15px}
+}
+.card{background:white;border-radius:var(--radius-lg);padding:20px;border:1px solid var(--gray-mid)}
+.card-title{font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
+
+/* ── BAR CHART ── */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bar-label{font-size:12px;color:#666;width:120px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;height:7px;background:var(--gray-light);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px}
+.bar-val{font-size:12px;color:#999;min-width:60px;text-align:right}
+
+/* ── LEGEND ── */
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#666}
+.legend-badge{width:26px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+
+/* ── TABLE ── */
+.table-wrap{overflow-x:auto;border:1px solid var(--gray-mid);border-radius:var(--radius-lg);background:white}
+table{width:100%;border-collapse:collapse;min-width:900px}
+thead th{background:#f5f4f0;padding:8px 6px;font-size:10px;font-weight:600;color:#888;text-align:center;border-bottom:1px solid var(--gray-mid);white-space:nowrap;position:sticky;top:0;z-index:2}
+thead th.th-act{text-align:left;min-width:220px;padding-left:14px}
+tbody td{padding:7px 6px;border-bottom:1px solid #f0efe8;text-align:center;vertical-align:middle}
+tbody td.td-act{text-align:left;padding-left:14px;padding-right:10px}
+.act-code{font-size:10px;color:#bbb;display:inline-block;width:32px}
+.act-name{font-size:12px;color:#333;line-height:1.3;cursor:pointer;transition:color .15s}
+.act-name:hover{color:var(--gold);text-decoration:underline}
+.act-row:hover td{background:#faf9f6}
+.phase-header td{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.6px;padding:6px 14px}
+.ph-plan td{background:#f9f4fc !important;color:#3a1c44}
+.ph-mob td{background:#fef9ec !important;color:#7a5800}
+.ph-show td{background:#fceef2 !important;color:#7a1e38}
+.ph-desm td{background:#e8f4e0 !important;color:#1a5c1a}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:22px;border-radius:5px;font-size:10px;font-weight:700;cursor:default;transition:transform .1s}
+.badge:hover{transform:scale(1.15)}
+.badge-RP{background:var(--RP-bg);color:var(--RP-text);border:1px solid var(--RP-border)}
+.badge-R{background:var(--R-bg);color:var(--R-text);border:1px solid var(--R-border)}
+.badge-A{background:var(--A-bg);color:var(--A-text);border:1px solid var(--A-border)}
+.badge-empty{color:#ddd;font-size:14px}
+
+/* ── ORG CARDS ── */
+.orgs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.org-card{background:white;border:1px solid var(--gray-mid);border-radius:var(--radius-lg);padding:16px 18px;transition:all .15s}
+.org-card:hover{border-color:#ccc;transform:translateY(-1px);box-shadow:var(--shadow)}
+.org-icon{font-size:22px;margin-bottom:10px}
+.org-name{font-family:var(--font-display);font-size:14px;font-weight:700;color:#1a0a22;margin-bottom:4px}
+.org-desc{font-size:11px;color:#888;line-height:1.5;margin-bottom:10px}
+.org-stats{display:flex;gap:6px;flex-wrap:wrap}
+.stat-pill{font-size:10px;font-weight:600;padding:3px 9px;border-radius:12px}
+.stat-RP{background:var(--RP-bg);color:var(--RP-text)}
+.stat-R{background:var(--R-bg);color:var(--R-text)}
+.stat-A{background:var(--A-bg);color:var(--A-text)}
+
+/* ── OPS CARDS ── */
+.ops-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.ops-card{background:white;border:1px solid var(--gray-mid);border-radius:var(--radius-lg);padding:18px 20px}
+.ops-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ops-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ops-org{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.ops-number{font-family:var(--font-display);font-size:32px;font-weight:700;color:#1a0a22;line-height:1}
+.ops-unit{font-size:13px;color:#888;margin-left:4px;font-family:var(--font-body)}
+.ops-detail{font-size:11px;color:#888;line-height:1.6;margin-top:10px}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:28px;max-width:680px}
+.tl-line{position:absolute;left:9px;top:6px;bottom:6px;width:1.5px;background:var(--gray-mid)}
+.tl-item{position:relative;margin-bottom:20px}
+.tl-dot{position:absolute;left:-23px;top:3px;width:10px;height:10px;border-radius:50%;border:2px solid var(--gold);background:white}
+.tl-date{font-size:11px;font-weight:600;color:var(--gold);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.tl-text{font-size:13px;color:#444;line-height:1.6}
+
+/* ── FILTER ── */
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.filter-lbl{font-size:12px;color:#888;margin-right:4px}
+.filter-btn{padding:5px 14px;font-size:12px;border:1px solid var(--gray-mid);border-radius:20px;cursor:pointer;background:white;color:#666;font-family:var(--font-body);transition:all .15s}
+.filter-btn:hover{border-color:#999;color:#333}
+.filter-btn.on{background:var(--gold);color:white;border-color:var(--gold)}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:32px 16px;overflow-y:auto}
+.modal-overlay.open{display:flex}
+.modal{background:white;border-radius:var(--radius-lg);width:100%;max-width:760px;box-shadow:var(--shadow-lg);animation:slideUp .2s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal-header{background:linear-gradient(135deg,#1a0a22,#2d1040);color:white;padding:20px 24px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;display:flex;align-items:flex-start;gap:16px;border-bottom:2px solid var(--gold)}
+.modal-code{background:var(--gold);color:#1a0a22;font-family:var(--font-display);font-size:13px;font-weight:700;padding:4px 10px;border-radius:6px;flex-shrink:0;margin-top:2px}
+.modal-title-wrap{flex:1}
+.modal-phase{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+.modal-title{font-family:var(--font-display);font-size:18px;font-weight:700;line-height:1.2;color:#f5e6b0}
+.modal-close{background:none;border:none;color:#888;cursor:pointer;padding:4px;font-size:20px;line-height:1;margin-top:-2px;transition:color .15s;flex-shrink:0}
+.modal-close:hover{color:white}
+.modal-body{padding:24px}
+.modal-rp{display:flex;align-items:center;gap:8px;margin-bottom:18px;padding:10px 14px;background:var(--RP-bg);border-left:3px solid var(--RP-border);border-radius:0 6px 6px 0}
+.modal-rp-label{font-size:11px;color:var(--RP-dark);font-weight:600;margin-bottom:2px}
+.modal-rp-org{font-size:14px;font-weight:700;color:var(--RP-text)}
+.modal-section{margin-bottom:18px}
+.modal-section-title{font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.modal-section-title::after{content:'';flex:1;height:1px;background:var(--gray-mid)}
+.modal-text{font-size:13px;color:#444;line-height:1.7}
+.modal-highlight{background:var(--gray-light);border-radius:8px;padding:10px 14px;font-size:12px;color:#333;line-height:1.6;margin-bottom:8px}
+.modal-highlight strong{color:#1a0a22}
+.modal-resp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:8px}
+.modal-resp-item{border-radius:8px;padding:8px 10px;font-size:11px;text-align:center;font-weight:500}
+.modal-links{display:flex;flex-direction:column;gap:6px}
+.modal-link{font-size:12px;color:#1B5FA0;text-decoration:none;word-break:break-all}
+.modal-link:hover{text-decoration:underline}
+.modal-footer{border-top:1px solid var(--gray-mid);padding:14px 24px;display:flex;justify-content:flex-end}
+.btn-close-modal{background:var(--gold);color:white;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-body)}
+.btn-close-modal:hover{background:var(--gold-dark)}
+
+/* ── HIGHLIGHT BOX ── */
+.event-fact{background:linear-gradient(135deg,var(--plum-light),var(--rose-light));border:1px solid #d4b0c8;border-radius:var(--radius-lg);padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.event-fact-icon{font-size:28px;flex-shrink:0}
+.event-fact-text{font-size:13px;color:#3a1c44;line-height:1.6}
+.event-fact-text strong{font-size:15px;display:block;margin-bottom:2px;color:#1a0a22}
+
+/* ── DESMOB BADGE ── */
+.phase-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
+.phase-badge.desm{background:#e8f4e0;color:#1a5c1a;border:1px solid #3B6D11}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo-circle">🎤</div>
+    <div class="header-text">
+      <h1>Show da Madonna em Copacabana — 04/05/2024</h1>
+      <p>Matriz de Atividades × Responsabilidades · COR / RIOTUR · Versão 2 — 07/05/24</p>
+    </div>
+    <div class="header-meta">
+      <div class="meta-pill"><strong>1 dia</strong><span>de evento</span></div>
+      <div class="meta-pill"><strong>1,6 mi</strong><span>pessoas</span></div>
+      <div class="meta-pill"><strong>32</strong><span>atividades</span></div>
+      <div class="meta-pill"><strong>14</strong><span>órgãos</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('visao',this)">📊 Visão geral</button>
+    <button class="tab-btn" onclick="showTab('matriz',this)">📋 Matriz AxR</button>
+    <button class="tab-btn" onclick="showTab('orgaos',this)">🏛 Órgãos</button>
+    <button class="tab-btn" onclick="showTab('operacional',this)">📈 Operacional</button>
+    <button class="tab-btn" onclick="showTab('cronologia',this)">🗓 Cronologia</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- VISÃO GERAL -->
+<div id="tab-visao" class="section active">
+
+  <div class="event-fact">
+    <div class="event-fact-icon">🌊</div>
+    <div class="event-fact-text">
+      <strong>O maior show da história do Rio de Janeiro</strong>
+      1,6 milhão de pessoas na Praia de Copacabana em uma única noite — maior público do mundo para um único show de Madonna. A Operação Madonna reuniu cerca de 3.000 agentes municipais de 11 órgãos e foi considerada um sucesso operacional sem registros graves.
+    </div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-val">1,6 mi</div><div class="metric-lab">Pessoas na Praia</div><div class="metric-sub">Maior público da história de Madonna</div></div>
+    <div class="metric-card"><div class="metric-val">3.000</div><div class="metric-lab">Agentes municipais</div><div class="metric-sub">11 secretarias e órgãos</div></div>
+    <div class="metric-card"><div class="metric-val">32</div><div class="metric-lab">Atividades mapeadas</div><div class="metric-sub">P · M · Show · Desmobilização</div></div>
+    <div class="metric-card"><div class="metric-val">530</div><div class="metric-lab">Atendimentos médicos</div><div class="metric-sub">Sem nenhum caso grave registrado</div></div>
+    <div class="metric-card"><div class="metric-val">287 t</div><div class="metric-lab">Lixo recolhido</div><div class="metric-sub">Praia entregue limpa às 6h</div></div>
+    <div class="metric-card"><div class="metric-val">0</div><div class="metric-lab">Registros graves</div><div class="metric-sub">Operação encerrada com sucesso</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Atividades por fase</div>
+      <div class="bar-row"><span class="bar-label">Planejamento (P)</span><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--plum)"></div></div><span class="bar-val">12 atividades</span></div>
+      <div class="bar-row"><span class="bar-label">Mobilização (M)</span><div class="bar-track"><div class="bar-fill" style="width:31%;background:var(--gold)"></div></div><span class="bar-val">5 atividades</span></div>
+      <div class="bar-row"><span class="bar-label">Show / Operação (S)</span><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--rose)"></div></div><span class="bar-val">8 atividades</span></div>
+      <div class="bar-row"><span class="bar-label">Desmobilização (D)</span><div class="bar-track"><div class="bar-fill" style="width:19%;background:#3B6D11"></div></div><span class="bar-val">3 atividades</span></div>
+      <div style="margin-top:14px;padding:10px 12px;background:var(--plum-light);border-radius:8px;font-size:12px;color:var(--plum-dark)">
+        ⭐ <strong>Novidade vs. Rock in Rio:</strong> Fase de Desmobilização (D.1–D.3) exclusiva deste evento.
+      </div>
+      <div style="margin-top:12px">
+        <div class="card-title">Legenda</div>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-badge badge-RP">RP</span> Responsável Principal</div>
+          <div class="legend-item"><span class="legend-badge badge-R">R</span> Responsável</div>
+          <div class="legend-item"><span class="legend-badge badge-A">A</span> Apoio / Participa</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Efetivo operacional</div>
+      <div class="bar-row"><span class="bar-label">COMLURB (garis)</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#888"></div></div><span class="bar-val">1.518</span></div>
+      <div class="bar-row"><span class="bar-label">GM / Ord. Pública</span><div class="bar-track"><div class="bar-fill" style="width:74%;background:var(--gold)"></div></div><span class="bar-val">1.130</span></div>
+      <div class="bar-row"><span class="bar-label">Saúde (profissionais)</span><div class="bar-track"><div class="bar-fill" style="width:9%;background:var(--rose)"></div></div><span class="bar-val">140 + 80</span></div>
+      <div class="bar-row"><span class="bar-label">CET-RIO (operadores)</span><div class="bar-track"><div class="bar-fill" style="width:13%;background:#3B6D11"></div></div><span class="bar-val">205</span></div>
+      <div class="bar-row"><span class="bar-label">Total municipal</span><div class="bar-track"><div class="bar-fill" style="width:19%;background:var(--plum)"></div></div><span class="bar-val">~3.000</span></div>
+      <div style="margin-top:14px">
+        <div class="card-title">Estrutura do palco</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="background:var(--gray-light);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;color:#888">Área total</div>
+            <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:#1a0a22">8.122 m²</div>
+          </div>
+          <div style="background:var(--gray-light);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;color:#888">Boca de cena</div>
+            <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:#1a0a22">24m × 18m</div>
+          </div>
+          <div style="background:var(--gray-light);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;color:#888">Passarelas</div>
+            <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:#1a0a22">3 + elevador</div>
+          </div>
+          <div style="background:var(--gray-light);border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;color:#888">Altura do chão</div>
+            <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:#1a0a22">2,40 m</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Destaques operacionais</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px">
+      <div style="background:var(--gray-light);border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#888;margin-bottom:4px">Câmeras de monitoramento</div>
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:#1a0a22">239 câmeras</div>
+        <div style="font-size:11px;color:#666;margin-top:3px">77 só na orla + bodycams + drones</div>
+      </div>
+      <div style="background:var(--gray-light);border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#888;margin-bottom:4px">Torres de som</div>
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:#1a0a22">18 torres</div>
+        <div style="font-size:11px;color:#666;margin-top:3px">Ao longo de toda a Praia de Copacabana</div>
+      </div>
+      <div style="background:var(--gray-light);border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#888;margin-bottom:4px">Banheiros químicos</div>
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:#1a0a22">550 cabines</div>
+        <div style="font-size:11px;color:#666;margin-top:3px">Em toda a orla de Copacabana</div>
+      </div>
+      <div style="background:var(--gray-light);border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#888;margin-bottom:4px">Armas brancas apreendidas</div>
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:#1a0a22">160+</div>
+        <div style="font-size:11px;color:#666;margin-top:3px">Facas, facões, tesouras nos bloqueios</div>
+      </div>
+      <div style="background:var(--gray-light);border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#888;margin-bottom:4px">Preservativos distribuídos</div>
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:#1a0a22">210 mil</div>
+        <div style="font-size:11px;color:#666;margin-top:3px">Nos postos médicos e unidade VamBora</div>
+      </div>
+      <div style="background:var(--gray-light);border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#888;margin-bottom:4px">Contêineres de lixo</div>
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:#1a0a22">1.500</div>
+        <div style="font-size:11px;color:#666;margin-top:3px">240L cada, na areia e calçadão</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MATRIZ AxR -->
+<div id="tab-matriz" class="section">
+  <div class="filter-row">
+    <span class="filter-lbl">Filtrar fase:</span>
+    <button class="filter-btn on" onclick="filterPhase('all',this)">Todas</button>
+    <button class="filter-btn" onclick="filterPhase('P',this)">Planejamento</button>
+    <button class="filter-btn" onclick="filterPhase('M',this)">Mobilização</button>
+    <button class="filter-btn" onclick="filterPhase('S',this)">Show</button>
+    <button class="filter-btn" onclick="filterPhase('D',this)">Desmobilização ⭐</button>
+  </div>
+  <div class="legend" style="margin-bottom:12px">
+    <div class="legend-item"><span class="legend-badge badge-RP">RP</span> Responsável Principal</div>
+    <div class="legend-item"><span class="legend-badge badge-R">R</span> Responsável</div>
+    <div class="legend-item"><span class="legend-badge badge-A">A</span> Apoio / Participante</div>
+    <div class="legend-item" style="color:#aaa;font-style:italic">💡 Clique no nome de uma atividade para ver os detalhes</div>
+  </div>
+  <div class="table-wrap">
+    <table id="matriz-table">
+      <thead>
+        <tr>
+          <th class="th-act">Atividade</th>
+          <th title="Centro de Operações Rio">COR</th>
+          <th title="RIOTUR">RIOTUR</th>
+          <th title="Promotor / Rede Globo">PROM.</th>
+          <th title="Corpo de Bombeiros MERJ">CBMERJ</th>
+          <th title="Polícia Militar RJ">PMERJ</th>
+          <th title="Guarda Municipal / Ordem Pública">GM/OP</th>
+          <th title="CET-RIO / SMTR">CET-RIO</th>
+          <th title="COMLURB">COMLURB</th>
+          <th title="RIOLUZ">RIOLUZ</th>
+          <th title="CGC">CGC</th>
+          <th title="PCERJ">PCERJ</th>
+          <th title="Alerta Rio">ALERTA</th>
+          <th title="Conc. Serv. Público / METRO">CONC./METRO</th>
+          <th title="Subprefeitura">SUBPREF.</th>
+          <th title="SMAS / Assistência Social">SMAS</th>
+          <th title="Secretaria Municipal de Saúde">SAÚDE</th>
+          <th title="ASCOM">ASCOM</th>
+        </tr>
+      </thead>
+      <tbody id="matriz-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ÓRGÃOS -->
+<div id="tab-orgaos" class="section">
+  <div class="orgs-grid" id="orgs-grid"></div>
+</div>
+
+<!-- OPERACIONAL -->
+<div id="tab-operacional" class="section">
+  <div class="ops-grid">
+    <div class="ops-card">
+      <div class="ops-header"><div class="ops-dot" style="background:var(--gold)"></div><span class="ops-org">GM / Ordem Pública</span></div>
+      <div><span class="ops-number">1.130</span><span class="ops-unit">agentes</span></div>
+      <div style="margin-top:10px">
+        <div class="bar-row"><span class="bar-label">Viaturas</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--gold)"></div></div><span class="bar-val">71</span></div>
+        <div class="bar-row"><span class="bar-label">Motocicletas</span><div class="bar-track"><div class="bar-fill" style="width:45%;background:var(--gold)"></div></div><span class="bar-val">32</span></div>
+        <div class="bar-row"><span class="bar-label">Reboques</span><div class="bar-track"><div class="bar-fill" style="width:14%;background:var(--gold)"></div></div><span class="bar-val">10</span></div>
+        <div class="bar-row"><span class="bar-label">Quadriciclos</span><div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--gold)"></div></div><span class="bar-val">5</span></div>
+      </div>
+      <div class="ops-detail">366 multas de trânsito · 156 veículos removidos · 4 cercadinhos ilegais desmobilizados · 30 acampamentos removidos · 2.000+ itens apreendidos (garrafas de vidro, cigarros eletrônicos, botijões de gás) · 59 facas e objetos perfurocortantes · patrulha aquática com Capitania dos Portos.</div>
+    </div>
+    <div class="ops-card">
+      <div class="ops-header"><div class="ops-dot" style="background:#888"></div><span class="ops-org">COMLURB</span></div>
+      <div><span class="ops-number">1.518</span><span class="ops-unit">garis · 3 turnos</span></div>
+      <div style="margin-top:10px">
+        <div class="bar-row"><span class="bar-label">Veículos</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#888"></div></div><span class="bar-val">69 (65+)</span></div>
+        <div class="bar-row"><span class="bar-label">Equipamentos</span><div class="bar-track"><div class="bar-fill" style="width:55%;background:#888"></div></div><span class="bar-val">38</span></div>
+        <div class="bar-row"><span class="bar-label">Tratores de areia</span><div class="bar-track"><div class="bar-fill" style="width:14%;background:#888"></div></div><span class="bar-val">10</span></div>
+        <div class="bar-row"><span class="bar-label">Lixo recolhido</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#888"></div></div><span class="bar-val">287 toneladas</span></div>
+      </div>
+      <div class="ops-detail">1.500 contêineres de 240L na areia e calçadão. 18 veículos de limpeza hidráulica com água de reuso. Agentes Lixo Zero com 27 multas por descarte irregular. Praia entregue limpa às 6h do dia seguinte.</div>
+    </div>
+    <div class="ops-card">
+      <div class="ops-header"><div class="ops-dot" style="background:var(--rose)"></div><span class="ops-org">Secretaria Municipal de Saúde</span></div>
+      <div><span class="ops-number">530</span><span class="ops-unit">atendimentos</span></div>
+      <div style="margin-top:10px">
+        <div class="bar-row"><span class="bar-label">Postos médicos</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--rose)"></div></div><span class="bar-val">3</span></div>
+        <div class="bar-row"><span class="bar-label">Profissionais</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--rose)"></div></div><span class="bar-val">140</span></div>
+        <div class="bar-row"><span class="bar-label">Maqueiros</span><div class="bar-track"><div class="bar-fill" style="width:57%;background:var(--rose)"></div></div><span class="bar-val">80</span></div>
+        <div class="bar-row"><span class="bar-label">Ambulâncias UTI</span><div class="bar-track"><div class="bar-fill" style="width:21%;background:var(--rose)"></div></div><span class="bar-val">30</span></div>
+        <div class="bar-row"><span class="bar-label">Leitos</span><div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--rose)"></div></div><span class="bar-val">36</span></div>
+        <div class="bar-row"><span class="bar-label">Poltronas de hidrat.</span><div class="bar-track"><div class="bar-fill" style="width:32%;background:var(--rose)"></div></div><span class="bar-val">45</span></div>
+      </div>
+      <div class="ops-detail">Postos na Rua República do Peru, Av. Princesa Isabel e Praça do Lido. Funcionamento das 17h30 às 4h. 210 mil preservativos distribuídos. Nenhum caso grave registrado em 1,6 mi de pessoas.</div>
+    </div>
+    <div class="ops-card">
+      <div class="ops-header"><div class="ops-dot" style="background:#3B6D11"></div><span class="ops-org">CET-RIO / SMTR</span></div>
+      <div><span class="ops-number">205</span><span class="ops-unit">operadores</span></div>
+      <div style="margin-top:10px">
+        <div class="bar-row"><span class="bar-label">Motocicletas</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#3B6D11"></div></div><span class="bar-val">49</span></div>
+        <div class="bar-row"><span class="bar-label">Viaturas operacionais</span><div class="bar-track"><div class="bar-fill" style="width:53%;background:#3B6D11"></div></div><span class="bar-val">26</span></div>
+        <div class="bar-row"><span class="bar-label">Reboques</span><div class="bar-track"><div class="bar-fill" style="width:53%;background:#3B6D11"></div></div><span class="bar-val">26</span></div>
+        <div class="bar-row"><span class="bar-label">Painéis variáveis</span><div class="bar-track"><div class="bar-fill" style="width:63%;background:#3B6D11"></div></div><span class="bar-val">31</span></div>
+        <div class="bar-row"><span class="bar-label">Galhardetes</span><div class="bar-track"><div class="bar-fill" style="width:86%;background:#3B6D11"></div></div><span class="bar-val">420</span></div>
+      </div>
+      <div class="ops-detail">Proibição de estacionamento desde quinta (02/05). Ônibus de linha bloqueados a partir das 19h30. Linha expressa Terminal Gentileza–Copacabana transportou ~1.900 pessoas. Todos os acessos reabertos às 4h05 do dia seguinte.</div>
+    </div>
+    <div class="ops-card">
+      <div class="ops-header"><div class="ops-dot" style="background:var(--plum)"></div><span class="ops-org">COR — Monitoramento</span></div>
+      <div><span class="ops-number">239</span><span class="ops-unit">câmeras ativas</span></div>
+      <div style="margin-top:10px">
+        <div class="bar-row"><span class="bar-label">Câmeras na orla</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--plum)"></div></div><span class="bar-val">77</span></div>
+        <div class="bar-row"><span class="bar-label">Operadores (COR local)</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--plum)"></div></div><span class="bar-val">50</span></div>
+        <div class="bar-row"><span class="bar-label">Videowall local (m²)</span><div class="bar-track"><div class="bar-fill" style="width:6%;background:var(--plum)"></div></div><span class="bar-val">6 m²</span></div>
+        <div class="bar-row"><span class="bar-label">Videowall Cidade Nova</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--plum)"></div></div><span class="bar-val">104 m²</span></div>
+      </div>
+      <div class="ops-detail">Unidade avançada de 70 m² na Av. Atlântica, altura da Rua República do Peru. Videowall local de 3m × 2m. Bodycams e drones de apoio. Maior videowall da América Latina na Cidade Nova.</div>
+    </div>
+    <div class="ops-card">
+      <div class="ops-header"><div class="ops-dot" style="background:#5B2E6A"></div><span class="ops-org">PMERJ — Segurança</span></div>
+      <div><span class="ops-number">160+</span><span class="ops-unit">armas apreendidas</span></div>
+      <div class="ops-detail" style="margin-top:10px">33 pessoas conduzidas às delegacias. 1 preso por reconhecimento facial nas câmeras do entorno. Mais de 60 câmeras de segurança com reconhecimento facial. CICC Móvel com drones e tecnologia de inovação. Recom (Rondas Especiais) ativo durante toda a operação.</div>
+    </div>
+    <div class="ops-card">
+      <div class="ops-header"><div class="ops-dot" style="background:var(--gold)"></div><span class="ops-org">RIOTUR</span></div>
+      <div><span class="ops-number">1,6 mi</span><span class="ops-unit">pessoas contabilizadas</span></div>
+      <div class="ops-detail" style="margin-top:10px">Postos de informação nos aeroportos Santos Dumont e Galeão, Rodoviária do Rio e postos 2 e 5 de Copacabana. Postos volantes no Pão de Açúcar e Cristo Redentor. Pesquisa de satisfação turística (01–06/05) via QR Code em português, inglês e espanhol.</div>
+    </div>
+    <div class="ops-card">
+      <div class="ops-header"><div class="ops-dot" style="background:var(--rose)"></div><span class="ops-org">Assistência Social — SMAS</span></div>
+      <div><span class="ops-number">2.350</span><span class="ops-unit">pulseiras distribuídas</span></div>
+      <div class="ops-detail" style="margin-top:10px">Pulseiras de identificação para crianças e adolescentes. Ao término da operação: 4 crianças encontradas perdidas de seus responsáveis e 2 acolhimentos de adolescentes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CRONOLOGIA -->
+<div id="tab-cronologia" class="section">
+  <div class="card" style="max-width:720px">
+    <div class="card-title">Linha do tempo do evento</div>
+    <div class="timeline">
+      <div class="tl-line"></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Semanas antes</div><div class="tl-text">Montagem do palco no Posto 2, em frente ao Copacabana Palace. Estrutura de 8.122 m², erguida a 2,40 m do chão, com boca de cena de 24 metros, 3 passarelas e um elevador. Palco do DJ Pedro Sampaio montado na altura da Rua Prado Júnior.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">30 de abril — 5 dias antes</div><div class="tl-text">Alerta Rio divulga previsão: sem chuva para o dia do show, temperatura mínima de 23°C. Possível onda de calor até 10 de maio, com temperaturas 5°C acima da média. Umidade relativa em torno de 20%.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2 de maio — quinta-feira</div><div class="tl-text">CBMERJ realiza vistoria completa das estruturas: palco principal, passarela sobre a Av. Atlântica, área externa do Copacabana Palace e palco do DJ Pedro Sampaio. CET-RIO inicia proibição de estacionamento nas principais vias de Copacabana. Instalados 420 galhardetes.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">3 de maio — véspera</div><div class="tl-text">COMLURB inicia pré-limpeza da Av. Atlântica e calçadão desde a manhã. GM / Ordem Pública faz fiscalização prévia na areia com apoio da PMERJ e COMLURB.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">4 de maio — dia do show</div><div class="tl-text">COR Avançado entra em operação na Av. Atlântica, altura da Rua República do Peru. CBMERJ retorna ao local para conferência final das estruturas. Bloqueios viários implantados a partir das 7h. Metrô coloca toda a frota em operação às 15h.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">4 de maio — 17h</div><div class="tl-text">Postos médicos da Secretaria de Saúde abrem com 140 profissionais, 80 maqueiros, 36 leitos e 45 poltronas de hidratação. Ônibus de linha deixam de entrar em Copacabana a partir das 19h30.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">4 de maio — 19h</div><div class="tl-text">Abertura do show com DJs diversos. Às 20h sobe ao palco o DJ Diplo, aquecendo a praia para Madonna.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">4 de maio — 21h45</div><div class="tl-text">Madonna sobe ao palco. Riotur registra 1,6 milhão de pessoas presentes neste momento — maior público em toda a carreira da artista. Show com duração aproximada de 2 horas.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">5 de maio — madrugada</div><div class="tl-text">Encerramento do show de Madonna. Às 0h começa o after de Pedro Sampaio no palco da Rua Prado Júnior. Balanço parcial da PMERJ: 33 detidos, 160+ armas brancas apreendidas, 1 preso por reconhecimento facial. Metrô funciona até as 4h.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">5 de maio — 4h05</div><div class="tl-text">Todos os acessos ao bairro de Copacabana reabertos à circulação de veículos. Postos médicos encerram. Início da operação de desmobilização e limpeza intensiva.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">5 de maio — início da manhã</div><div class="tl-text">COMLURB entrega a Praia de Copacabana limpa para os cariocas após retirar 287 toneladas de lixo com 1.518 garis em três turnos. 10 tratores peneiraram a areia. Proibição de estacionamento encerrada às 6h. Reuniões de debriefing agendadas entre todos os órgãos.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">1 a 6 de maio — pesquisa</div><div class="tl-text">RIOTUR coleta dados de satisfação turística via QR Code em inglês e espanhol em pontos turísticos da cidade. Operação avaliada como grande sucesso: 1,6 milhão de pessoas, nenhum registro grave, cidade limpa no dia seguinte.</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <span class="modal-code" id="m-code">P.1</span>
+      <div class="modal-title-wrap">
+        <div class="modal-phase" id="m-phase">Planejamento</div>
+        <div class="modal-title" id="m-title">Título</div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body" id="m-body"></div>
+    <div class="modal-footer">
+      <button class="btn-close-modal" onclick="document.getElementById('modal-overlay').classList.remove('open')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const COLS=['COR','RIOTUR','PROM','CBMERJ','PMERJ','GM','CET','COMLURB','RIOLUZ','CGC','PCERJ','ALERTA','CONC','SUBPREF','SMAS','SAUDE','ASCOM'];
+const COL_NAMES={COR:'Centro de Operações Rio',RIOTUR:'RIOTUR',PROM:'Promotor / Rede Globo',CBMERJ:'CBMERJ',PMERJ:'PMERJ',GM:'Guarda Municipal / Ord. Pública',CET:'CET-RIO / SMTR',COMLURB:'COMLURB',RIOLUZ:'RIOLUZ',CGC:'CGC',PCERJ:'PCERJ',ALERTA:'Alerta Rio',CONC:'Conc./Metrô',SUBPREF:'Subprefeitura',SMAS:'SMAS / Assist. Social',SAUDE:'Secretaria de Saúde',ASCOM:'ASCOM'};
+
+const MATRIX=[
+  {phase:'Planejamento',code:'P.1',label:'Definir locais das estruturas fixas e móveis',data:{COR:'A',RIOTUR:'RP',PROM:'R',CBMERJ:'A',PMERJ:'A',GM:'A',CET:'A',COMLURB:'A',RIOLUZ:'A',CGC:'A',PCERJ:null,ALERTA:null,CONC:'A',SUBPREF:'A',SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Planejamento',code:'P.2',label:'Definir e divulgar a programação do evento',data:{COR:'R',RIOTUR:'RP',PROM:'R',CBMERJ:null,PMERJ:null,GM:null,CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:'R'}},
+  {phase:'Planejamento',code:'P.3',label:'Realizar reuniões operacionais de integração entre os órgãos',data:{COR:'RP',RIOTUR:'R',PROM:'R',CBMERJ:'A',PMERJ:'A',GM:'A',CET:'A',COMLURB:'A',RIOLUZ:'A',CGC:'A',PCERJ:'A',ALERTA:'A',CONC:'A',SUBPREF:'A',SMAS:'A',SAUDE:'A',ASCOM:'A'}},
+  {phase:'Planejamento',code:'P.4',label:'Montar palco e demais estruturas de apoio (ARTs)',data:{COR:null,RIOTUR:'R',PROM:'RP',CBMERJ:'A',PMERJ:null,GM:null,CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Planejamento',code:'P.5',label:'Fiscalizar montagem das estruturas e autorizar o evento',data:{COR:null,RIOTUR:'A',PROM:'A',CBMERJ:'RP',PMERJ:null,GM:null,CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:'A',SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Planejamento',code:'P.6',label:'Elaborar Planos de Emergência, Contingências e Operacionais',data:{COR:'R',RIOTUR:'RP',PROM:'R',CBMERJ:'R',PMERJ:'R',GM:'R',CET:'R',COMLURB:'R',RIOLUZ:'R',CGC:'R',PCERJ:'R',ALERTA:'R',CONC:'R',SUBPREF:'R',SMAS:'R',SAUDE:'R',ASCOM:'R'}},
+  {phase:'Planejamento',code:'P.7',label:'Monitorar condições climáticas antes, durante e após o evento',data:{COR:'R',RIOTUR:'A',PROM:'A',CBMERJ:'A',PMERJ:'A',GM:'A',CET:'A',COMLURB:'A',RIOLUZ:'A',CGC:'A',PCERJ:'A',ALERTA:'RP',CONC:'A',SUBPREF:'A',SMAS:'A',SAUDE:'A',ASCOM:'R'}},
+  {phase:'Planejamento',code:'P.8',label:'Divulgar esclarecimentos à população e moradores de Copacabana',data:{COR:'A',RIOTUR:'RP',PROM:'R',CBMERJ:null,PMERJ:null,GM:null,CET:'R',COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:'R',SMAS:null,SAUDE:null,ASCOM:'R'}},
+  {phase:'Planejamento',code:'P.9',label:'Estruturar assistência à saúde e instalação de postos',data:{COR:null,RIOTUR:'A',PROM:'A',CBMERJ:'R',PMERJ:null,GM:'A',CET:null,COMLURB:null,RIOLUZ:'A',CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:'A',SMAS:'A',SAUDE:'RP',ASCOM:'A'}},
+  {phase:'Planejamento',code:'P.10',label:'Plano do sistema de transporte (vias, metrô, ônibus)',data:{COR:null,RIOTUR:'R',PROM:'A',CBMERJ:null,PMERJ:'A',GM:'R',CET:'RP',COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:'R',SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:'R'}},
+  {phase:'Planejamento',code:'P.11',label:'Instalar unidade avançada de monitoramento (câmeras COR)',data:{COR:'RP',RIOTUR:'A',PROM:null,CBMERJ:null,PMERJ:null,GM:'A',CET:'R',COMLURB:null,RIOLUZ:'A',CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:'A'}},
+  {phase:'Planejamento',code:'P.12',label:'Prever rotas de emergência para ambulâncias e equipes de apoio',data:{COR:'A',RIOTUR:'R',PROM:'A',CBMERJ:'A',PMERJ:'A',GM:'R',CET:'RP',COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:'R',SAUDE:null,ASCOM:'R'}},
+  {phase:'Mobilização',code:'M.1',label:'Manter equipe de sobreaviso / prontidão',data:{COR:'A',RIOTUR:'A',PROM:'A',CBMERJ:'A',PMERJ:'A',GM:'A',CET:'A',COMLURB:'A',RIOLUZ:'A',CGC:'A',PCERJ:'A',ALERTA:'A',CONC:'A',SUBPREF:'A',SMAS:'A',SAUDE:'A',ASCOM:'A'}},
+  {phase:'Mobilização',code:'M.2',label:'Acionar órgãos responsáveis em situações inesperadas',data:{COR:'RP',RIOTUR:'R',PROM:'R',CBMERJ:'A',PMERJ:'A',GM:'A',CET:'A',COMLURB:'A',RIOLUZ:'A',CGC:'A',PCERJ:'A',ALERTA:'A',CONC:'A',SUBPREF:'A',SMAS:'A',SAUDE:'A',ASCOM:'A'}},
+  {phase:'Mobilização',code:'M.3',label:'Receber informações da população e/ou imprensa',data:{COR:'RP',RIOTUR:'R',PROM:'R',CBMERJ:'R',PMERJ:'R',GM:'R',CET:'A',COMLURB:'A',RIOLUZ:'A',CGC:'A',PCERJ:'A',ALERTA:null,CONC:'A',SUBPREF:'A',SMAS:'A',SAUDE:'A',ASCOM:'RP'}},
+  {phase:'Mobilização',code:'M.4',label:'Montar bloqueios de trânsito (TRÂNSITO LIVRE)',data:{COR:null,RIOTUR:'A',PROM:null,CBMERJ:null,PMERJ:'R',GM:'RP',CET:'R',COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Mobilização',code:'M.5',label:'Controle urbano / coibir comércio irregular no entorno',data:{COR:null,RIOTUR:null,PROM:null,CBMERJ:null,PMERJ:'A',GM:'RP',CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Show',code:'S.1',label:'Preservação da segurança pública (presença ostensiva)',data:{COR:null,RIOTUR:null,PROM:null,CBMERJ:null,PMERJ:'RP',GM:'R',CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:'R',ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Show',code:'S.2',label:'Registro de ocorrências policiais e ações correlatas',data:{COR:null,RIOTUR:null,PROM:null,CBMERJ:null,PMERJ:'R',GM:'A',CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:'RP',ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Show',code:'S.3',label:'Proteção e ordem nas ações dos órgãos públicos',data:{COR:null,RIOTUR:null,PROM:null,CBMERJ:null,PMERJ:'R',GM:'RP',CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Show',code:'S.4',label:'Ações de socorro e resgate na Orla e vias públicas',data:{COR:'A',RIOTUR:null,PROM:null,CBMERJ:'RP',PMERJ:'A',GM:'A',CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:'A',ASCOM:null}},
+  {phase:'Show',code:'S.5',label:'Prestar atendimento médico nos postos',data:{COR:null,RIOTUR:null,PROM:null,CBMERJ:null,PMERJ:null,GM:null,CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:'RP',ASCOM:null}},
+  {phase:'Show',code:'S.6',label:'Atender pessoas perdidas e assistência social',data:{COR:'A',RIOTUR:null,PROM:null,CBMERJ:'A',PMERJ:null,GM:'A',CET:null,COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:'RP',SAUDE:null,ASCOM:'A'}},
+  {phase:'Show',code:'S.7',label:'Limpeza da região (varrição, recolhimento e coleta de lixo)',data:{COR:null,RIOTUR:null,PROM:null,CBMERJ:null,PMERJ:null,GM:null,CET:null,COMLURB:'RP',RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Show',code:'S.8',label:'Ordenamento do tráfego e monitoramento do trânsito',data:{COR:'A',RIOTUR:null,PROM:null,CBMERJ:null,PMERJ:'A',GM:'RP',CET:'R',COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Desmobilização',code:'D.1',label:'Auxiliar na ordenação da saída do público (sistema de som)',data:{COR:'A',RIOTUR:'R',PROM:'A',CBMERJ:null,PMERJ:'R',GM:'R',CET:'A',COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:'A',SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Desmobilização',code:'D.2',label:'Recolher o entulho e lixo pós-evento',data:{COR:null,RIOTUR:'A',PROM:null,CBMERJ:null,PMERJ:null,GM:null,CET:null,COMLURB:'RP',RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:null,SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+  {phase:'Desmobilização',code:'D.3',label:'Garantir segurança no retorno (carro, ônibus, metrô)',data:{COR:null,RIOTUR:null,PROM:null,CBMERJ:null,PMERJ:'RP',GM:'R',CET:'A',COMLURB:null,RIOLUZ:null,CGC:null,PCERJ:null,ALERTA:null,CONC:'R',SUBPREF:null,SMAS:null,SAUDE:null,ASCOM:null}},
+];
+
+const DETAILS={
+  'P.1':{rp:'RIOTUR',highlights:[{label:'Local',val:'Praia de Copacabana · Posto 2 · Av. Atlântica'},{label:'Palco principal',val:'Em frente ao Copacabana Palace'},{label:'2º palco (after)',val:'Altura da Rua Prado Júnior · DJ Pedro Sampaio'}],text:'A definição dos locais das estruturas incluiu o palco principal em frente ao Copacabana Palace (Posto 2) e um segundo palco na altura da Rua Prado Júnior para o after show de Pedro Sampaio. Também foram planejados 18 torres de sonorização ao longo de toda a orla e 550 cabines sanitárias. Todos os órgãos participaram como apoio na definição e validação dos espaços.',links:[]},
+  'P.2':{rp:'RIOTUR (com Rede Globo e Promotor)',highlights:[{label:'Madonna',val:'Sobe ao palco às 21h45 · Duração ~2h'},{label:'Abertura',val:'DJs a partir das 19h · DJ Diplo às 20h'},{label:'After',val:'Pedro Sampaio a partir das 0h (Palco Prado Júnior)'},{label:'Transmissão',val:'Rede Globo e G1 ao vivo'}],text:'A Rede Globo e a Prefeitura do Rio divulgaram amplamente as ações de planejamento e operação do evento por vários dias anteriores ao show. A programação foi estruturada em três momentos: abertura com DJs às 19h, DJ Diplo às 20h, Madonna às 21h45, e after show de Pedro Sampaio a partir da meia-noite.',links:['https://g1.globo.com/pop-arte/noticia/2024/05/01/madonna-no-rio-setlist-horario-transmissao-do-show-e-tudo-que-voce-precisa-saber.ghtml','https://g1.globo.com/rj/rio-de-janeiro/show-da-madonna/noticia/2024/04/29/show-de-madonna-em-copacabana-perguntas-e-respostas.ghtml']},
+  'P.3':{rp:'COR — Centro de Operações Rio',highlights:[{label:'Local das reuniões',val:'Centro de Operações Rio — Cidade Nova'},{label:'Referência',val:'Experiência do Réveillon aproveitada'}],text:'Diversas reuniões de planejamento foram realizadas no Centro de Operações Rio. Todos os órgãos participaram como apoio nestas reuniões. O COR utilizou a experiência operacional do Réveillon para orientar os agentes municipais nas ações do show.',links:['https://prefeitura.rio/cidade/prefeitura-apresenta-plano-operacional-para-show-da-cantora-madonna/']},
+  'P.4':{rp:'Promotor do Evento / Rede Globo',highlights:[{label:'Área do palco',val:'8.122 m²'},{label:'Boca de cena',val:'24 metros (vs. padrão de 20m)'},{label:'Pé direito',val:'18 metros'},{label:'Passarelas',val:'3 conectadas ao palco + 1 elevador'},{label:'Altura do chão',val:'2,40 m (visibilidade do público distante)'}],text:'O palco foi montado em frente ao Copacabana Palace. A estrutura de 270 toneladas foi erguida a 2,40m do chão para garantir visibilidade ao público posicionado mais distante da artista. A boca de cena de 24 metros supera o padrão habitual de grandes palcos. As três passarelas permitiram que Madonna se movimentasse entre o público durante o show.',links:['https://istoe.com.br/madonna-no-rio-270-toneladas-de-estrutura-200-pessoas-de-equipe-palco-de-24-metros-e-mais/']},
+  'P.5':{rp:'CBMERJ — Corpo de Bombeiros',highlights:[{label:'Vistoria',val:'2 de maio de 2024 (quinta-feira)'},{label:'Estruturas',val:'Palco principal + passarela Av. Atlântica + Copacabana Palace + 2º palco'}],text:'O CBMERJ vistoriou na quinta-feira (02/05) todas as estruturas provisórias montadas para o show. Foram conferidas condições de segurança contra incêndios e pânico nas áreas VIP, espaços comuns, acessos do backstage, cozinhas, passarelas, camarins de Madonna e de bailarinos. A equipe da DGDP retornou no sábado para conferência final antes do show.',links:['https://www.cbmerj.rj.gov.br/elementor-25144/']},
+  'P.6':{rp:'RIOTUR',highlights:[{label:'Ruas abertas (c/ controle)',val:'Belford Roxo, Almirante Gonçalves, Constante Ramos, Antonio Vieira, Figueiredo de Magalhães, Bolívar e outras'},{label:'Ruas fechadas com grades',val:'Rodolfo Dantas, Fernando Mendes, República do Peru, Paula Freitas (mais próximas do palco)'}],text:'Cada órgão elaborou seu plano operacional específico. O plano de segurança dividiu as ruas em dois regimes: ruas abertas com controle de acesso por revista e câmeras de reconhecimento facial, e ruas totalmente fechadas com grades nas vias mais próximas do palco (Rodolfo Dantas, Fernando Mendes, República do Peru e Paula Freitas).',links:['https://prefeitura.rio/cidade/prefeitura-apresenta-plano-operacional-para-show-da-cantora-madonna/','https://g1.globo.com/rj/rio-de-janeiro/show-da-madonna/noticia/2024/04/29/show-de-madonna-em-copacabana-perguntas-e-respostas.ghtml']},
+  'P.7':{rp:'Alerta Rio',highlights:[{label:'Previsão (04/05)',val:'Sem chuva · Mínima 23°C'},{label:'Onda de calor',val:'Até 5°C acima da média (32°C) · Até 10 de maio'},{label:'Umidade relativa',val:'~20% — cuidados especiais com hidratação'}],text:'Desde o dia 30 de abril, o Alerta Rio já divulgava previsão favorável para o dia do show: sem chuva e temperatura mínima de 23°C. A previsão indicava também uma onda de calor com temperaturas até 5°C acima da média na região, com umidade relativa muito baixa, exigindo atenção especial com hidratação do público.',links:[]},
+  'P.8':{rp:'RIOTUR',highlights:[{label:'Canais',val:'Rede Globo, G1 e Prefeitura do Rio'},{label:'Informação',val:'Como chegar sem perrengue · Mapas de acesso'},{label:'Moradores',val:'Esquema especial para residentes de Copacabana'}],text:'A Rede Globo e a Prefeitura do Rio divulgaram amplamente as ações de planejamento e operação do evento por vários dias antes do show, incluindo mapas interativos de acesso, recomendação de uso do metrô, e informações para moradores do bairro.',links:['https://g1.globo.com/rj/rio-de-janeiro/show-da-madonna/noticia/2024/05/04/saia-cedo-para-ver-madonna-de-perto-veja-em-mapas-como-chegar-a-copacabana-e-sem-perrengue.ghtml','https://g1.globo.com/rj/rio-de-janeiro/show-da-madonna/noticia/2024/04/29/show-de-madonna-em-copacabana-perguntas-e-respostas.ghtml']},
+  'P.9':{rp:'Secretaria Municipal de Saúde',highlights:[{label:'3 postos médicos',val:'República do Peru · Princesa Isabel · Praça do Lido'},{label:'Funcionamento',val:'17h30 de sábado (04) às 4h de domingo (05)'},{label:'Leitos',val:'36 (6 de suporte avançado de vida)'},{label:'Poltronas de hidratação',val:'45'},{label:'Profissionais',val:'140 + 80 maqueiros + 30 ambulâncias UTI'}],text:'Foram montados 3 postos de saúde totalmente equipados para atendimentos de emergência. Também foi implantada uma área para contingência em caso de incidente com múltiplas vítimas. A unidade móvel VamBora da SMS complementou o atendimento. Ao final, 530 atendimentos simples e de baixa complexidade foram realizados, sem nenhum caso grave.',links:['https://g1.globo.com/rj/rio-de-janeiro/show-da-madonna/noticia/2024/04/29/show-de-madonna-em-copacabana-perguntas-e-respostas.ghtml']},
+  'P.10':{rp:'CET-RIO & SMTR',highlights:[{label:'Estacionamento',val:'Proibido em Copacabana desde quinta (02/05) às 18h'},{label:'Metrô',val:'Frota completa a partir das 15h · Até as 4h · Siqueira Campos recomendada'},{label:'Ônibus de linha',val:'Bloqueados a partir das 19h30'},{label:'Bolsão Botafogo',val:'Linhas 100, 167, 415, 457, 474, 483, 492'},{label:'Bolsão Ipanema',val:'Linhas 552, 553, 554, 557, 558, 539, 2334, 2335, 2338'},{label:'Linha expressa',val:'Terminal Gentileza → Copacabana · ~1.900 passageiros'},{label:'Reabertura',val:'Todos os acessos liberados às 4h05 de domingo'}],text:'O plano de transporte foi um dos mais complexos já executados no Rio. O metrô foi a opção recomendada pelas autoridades. Os ônibus de linha deixaram de entrar em Copacabana às 19h30, com desembarque nos bolsões de Botafogo (2,5 km do palco) e Ipanema (3 km). Uma linha expressa exclusiva ligou o Terminal Gentileza a Copacabana, aproveitando especialmente passageiros da Rodoviária.',links:[]},
+  'P.11':{rp:'COR — Centro de Operações Rio',highlights:[{label:'Localização',val:'Av. Atlântica, altura da Rua República do Peru'},{label:'Área da unidade',val:'~70 m²'},{label:'Videowall local',val:'3m × 2m'},{label:'Câmeras ativas',val:'239 (77 só na orla)'},{label:'Sala de Situação',val:'Cidade Nova · videowall 104 m² (maior da América Latina)'},{label:'Equipe',val:'50 operadores de plantão'}],text:'O COR instalou uma unidade avançada de monitoramento exclusivamente para o show. A unidade móvel ficou conectada em tempo real à Sala de Situação da Cidade Nova. Bodycams e drones de apoio completaram a cobertura de áreas sem câmera fixa. Ao final da operação, nenhum registro grave foi constatado.',links:['https://cor.rio/centro-de-operacoes-rio-instala-unidade-avancada-de-monitoramento-para-show-da-madonna-em-copacabana/']},
+  'P.12':{rp:'CET-RIO & SMTR',highlights:[{label:'Rotas',val:'Emergenciais para ambulâncias e equipes de apoio'}],text:'Os órgãos responsáveis montaram rotas emergenciais para deslocamento de ambulâncias e demais equipes de emergência, garantindo acesso rápido à área do evento mesmo com os extensos bloqueios viários do bairro de Copacabana durante o show.',links:['https://g1.globo.com/rj/rio-de-janeiro/show-da-madonna/noticia/2024/04/29/show-de-madonna-em-copacabana-perguntas-e-respostas.ghtml']},
+  'S.1':{rp:'PMERJ — Polícia Militar do Estado do RJ',highlights:[{label:'Detidos',val:'33 pessoas conduzidas às delegacias'},{label:'Armas apreendidas',val:'160+ facas, facões, tesouras e estiletes nos bloqueios'},{label:'Presos (facial)',val:'1 identificado pelo sistema de reconhecimento facial'},{label:'CICC Móvel',val:'Reconhecimento facial + drones + câmeras de segurança'}],text:'A PMERJ montou esquema de segurança desde as primeiras horas da madrugada do sábado. O Sistema de Reconhecimento Facial operou em mais de 60 câmeras no bairro. O CICC Móvel integrou todas as atividades de segurança com tecnologia de inovação. O Recom (Rondas Especiais e Controle de Multidões) atuou em situações de confusão no público.',links:['https://g1.globo.com/rj/rio-de-janeiro/show-da-madonna/noticia/2024/05/05/balanco-seguranca-madonna.ghtml']},
+  'S.4':{rp:'CBMERJ — Corpo de Bombeiros',highlights:[{label:'Inovação',val:'Jatos de água para refrescar público durante o dia'},{label:'Contexto',val:'Onda de calor com umidade de ~20%'}],text:'O CBMERJ realizou ações de socorro e resgate na Orla e vias públicas. Diante da onda de calor e da baixa umidade relativa do ar, os Bombeiros também utilizaram jatos de água para refrescar o público durante o dia, antes do início do show.',links:[]},
+  'S.5':{rp:'Secretaria Municipal de Saúde',highlights:[{label:'Atendimentos',val:'530 simples e de baixa complexidade'},{label:'Casos graves',val:'0 (nenhum registrado em 1,6 mi de pessoas)'},{label:'Preservativos',val:'210 mil distribuídos nos postos e unidade VamBora'}],text:'Os três postos médicos realizaram 530 atendimentos simples em um público de 1,6 milhão de pessoas, sem nenhum caso grave registrado. A unidade móvel VamBora da Secretaria Municipal de Saúde complementou o atendimento distribuindo 210 mil preservativos masculinos e femininos.',links:[]},
+  'D.1':{rp:'PMERJ (coordena saída)',highlights:[{label:'Fase',val:'Encerramento do show e saída do público'},{label:'Sistema de som',val:'Utilizado para orientar o público'}],text:'A fase de Desmobilização é uma novidade desta Matriz em relação ao modelo Rock in Rio. Na atividade D.1, RIOTUR, PMERJ e GM atuaram na ordenação da saída do público, com uso do sistema de som para orientação. O metrô funcionou até as 4h e linhas regulares saíram dos bolsões de Botafogo e Ipanema.',links:[]},
+  'D.2':{rp:'COMLURB',highlights:[{label:'Lixo recolhido',val:'287 toneladas'},{label:'Garis',val:'1.518 em 3 turnos'},{label:'Entrega',val:'Praia limpa às 6h da manhã de domingo'}],text:'A COMLURB realizou a megaoperação de limpeza pós-evento com 1.518 garis, 69 veículos, 38 equipamentos e 10 tratores que fizeram o peneiramento da areia antes e após o show. A operação incluiu lavagem das ruas com água de reuso. O lixo domiciliar do sábado foi coletado excepcionalmente no domingo a partir das 19h.',links:[]},
+  'D.3':{rp:'PMERJ',highlights:[{label:'Metrô',val:'Aberto até as 4h com linhas regulares'},{label:'Ônibus',val:'Linhas regulares saindo dos bolsões de Botafogo e Ipanema'},{label:'Liberação viária',val:'Todos os acessos reabertos às 4h05'}],text:'A PMERJ coordenou a segurança do público durante o retorno às residências. O metrô funcionou até as 4h, as linhas regulares saíram dos bolsões, e todos os acessos ao bairro de Copacabana foram reabertos às 4h05 da manhã. A operação foi encerrada sem ocorrências graves.',links:[]},
+};
+
+const ORGS=[
+  {key:'COR',name:'Centro de Operações Rio',icon:'📡',color:'#5B2E6A',desc:'239 câmeras ativas, unidade avançada de 70m² na Orla, videowall 104m² (maior da América Latina) na Cidade Nova. Bodycams e drones.',rp:3,r:3,a:10},
+  {key:'RIOTUR',name:'RIOTUR',icon:'🌴',color:'#B8860B',desc:'Postos de informação em aeroportos, rodoviária e pontos turísticos. 1,6 mi de pessoas contabilizadas às 22h45. Pesquisa de satisfação turística.',rp:4,r:5,a:7},
+  {key:'PROM',name:'Promotor / Rede Globo',icon:'🎤',color:'#7a5800',desc:'Palco de 8.122 m², 270 toneladas, 24m de boca de cena, 3 passarelas + elevador. 18 torres de som. 550 cabines sanitárias.',rp:3,r:3,a:5},
+  {key:'CBMERJ',name:'CBMERJ',icon:'🚒',color:'#C0395B',desc:'Vistoria em 02/05 de todas as estruturas. Jatos de água para refrescar o público durante o dia. Fiscalização e autorização do evento.',rp:2,r:2,a:9},
+  {key:'PMERJ',name:'Polícia Militar — PMERJ',icon:'🛡️',color:'#3B4FAF',desc:'33 detidos, 160+ armas apreendidas, 1 preso por reconhecimento facial. CICC Móvel com mais de 60 câmeras de reconhecimento facial.',rp:3,r:4,a:6},
+  {key:'GM',name:'Guarda Municipal / Ord. Pública',icon:'🏛️',color:'#2E6B1A',desc:'1.130 agentes, 71 viaturas. 366 multas, 156 veículos removidos, 4 cercadinhos e 30 acampamentos desmobilizados. Patrulha aquática.',rp:3,r:4,a:8},
+  {key:'CET',name:'CET-RIO / SMTR',icon:'🚦',color:'#3B6D11',desc:'205 operadores, 49 motos, 26 viaturas, 26 reboques. Linha expressa Terminal Gentileza transportou ~1.900 pessoas. Todos os acessos liberados às 4h05.',rp:2,r:4,a:7},
+  {key:'COMLURB',name:'COMLURB',icon:'♻️',color:'#555',desc:'1.518 garis em 3 turnos. 287 toneladas de lixo recolhidas. 1.500 contêineres de 240L. Praia entregue limpa às 6h da manhã.',rp:3,r:1,a:4},
+  {key:'SAUDE',name:'Secretaria Municipal de Saúde',icon:'🏥',color:'#A32D2D',desc:'530 atendimentos, 0 casos graves em 1,6 mi de pessoas. 3 postos médicos, 140 profissionais, 80 maqueiros, 30 ambulâncias UTI.',rp:2,r:1,a:7},
+  {key:'ALERTA',name:'Alerta Rio',icon:'🌦️',color:'#185FA5',desc:'Monitoramento 24h/7. Previsão sem chuva confirmada. Alertou sobre onda de calor e umidade baixa (~20%) para cuidados com hidratação.',rp:1,r:1,a:11},
+  {key:'SMAS',name:'SMAS / Assistência Social',icon:'🤝',color:'#B8860B',desc:'2.350 pulseiras de identificação distribuídas. 4 crianças encontradas perdidas. 2 acolhimentos de adolescentes.',rp:1,r:1,a:3},
+];
+
+const phaseClass={'Planejamento':'ph-plan','Mobilização':'ph-mob','Show':'ph-show','Desmobilização':'ph-desm'};
+const phaseName={'Planejamento':'Planejamento','Mobilização':'Mobilização','Show':'Show / Operação','Desmobilização':'Desmobilização ⭐'};
+
+function renderMatrix(filter){
+  const tbody=document.getElementById('matriz-body');
+  tbody.innerHTML='';
+  let lastPhase='';
+  MATRIX.forEach(row=>{
+    if(filter!=='all'&&!row.code.startsWith(filter))return;
+    if(row.phase!==lastPhase){
+      const tr=document.createElement('tr');
+      tr.className='phase-header '+phaseClass[row.phase];
+      tr.innerHTML=`<td colspan="18">${phaseName[row.phase]}</td>`;
+      tbody.appendChild(tr);
+      lastPhase=row.phase;
+    }
+    const tr=document.createElement('tr');
+    tr.className='act-row';
+    const hasDet=!!DETAILS[row.code];
+    const nameHtml=hasDet
+      ?`<span class="act-name" onclick="openDetail('${row.code}')" title="Clique para ver detalhes">${row.label} <span style="color:var(--gold);font-size:10px">›</span></span>`
+      :`<span class="act-name" style="cursor:default">${row.label}</span>`;
+    let cells=`<td class="td-act"><span class="act-code">${row.code}</span>${nameHtml}</td>`;
+    COLS.forEach(c=>{
+      const v=row.data[c];
+      if(v){cells+=`<td><span class="badge badge-${v}" title="${COL_NAMES[c]}">${v}</span></td>`;}
+      else{cells+=`<td><span class="badge badge-empty">·</span></td>`;}
+    });
+    tr.innerHTML=cells;
+    tbody.appendChild(tr);
+  });
+}
+
+function openDetail(code){
+  const row=MATRIX.find(r=>r.code===code);
+  const det=DETAILS[code];
+  if(!row||!det)return;
+  document.getElementById('m-code').textContent=code;
+  document.getElementById('m-phase').textContent=row.phase;
+  document.getElementById('m-title').textContent=row.label;
+  const respItems=COLS.map(c=>{
+    const v=row.data[c];
+    if(!v)return null;
+    const bg=v==='RP'?'var(--RP-bg)':v==='R'?'var(--R-bg)':'var(--A-bg)';
+    const tc=v==='RP'?'var(--RP-text)':v==='R'?'var(--R-text)':'var(--A-text)';
+    const bc=v==='RP'?'var(--RP-border)':v==='R'?'var(--R-border)':'var(--A-border)';
+    return `<div class="modal-resp-item" style="background:${bg};color:${tc};border:1px solid ${bc}"><div style="font-size:13px;font-weight:700">${v}</div><div style="font-size:10px;margin-top:2px;opacity:.8">${COL_NAMES[c]}</div></div>`;
+  }).filter(Boolean).join('');
+  const hiHtml=det.highlights.map(h=>`<div class="modal-highlight"><strong>${h.label}:</strong> ${h.val}</div>`).join('');
+  const linksHtml=det.links.length?`<div class="modal-section"><div class="modal-section-title">Fontes</div><div class="modal-links">${det.links.map(l=>`<a class="modal-link" href="${l}" target="_blank">🔗 ${l}</a>`).join('')}</div></div>`:'';
+  document.getElementById('m-body').innerHTML=`
+    <div class="modal-rp"><div><div class="modal-rp-label">Responsável Principal (RP)</div><div class="modal-rp-org">${det.rp}</div></div></div>
+    ${hiHtml?`<div class="modal-section"><div class="modal-section-title">Dados operacionais</div>${hiHtml}</div>`:''}
+    <div class="modal-section"><div class="modal-section-title">Descrição e contexto</div><div class="modal-text"><p>${det.text}</p></div></div>
+    <div class="modal-section"><div class="modal-section-title">Participação dos órgãos</div><div class="modal-resp-grid">${respItems}</div></div>
+    ${linksHtml}`;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(e){if(e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal-overlay').classList.remove('open')});
+
+function renderOrgs(){
+  document.getElementById('orgs-grid').innerHTML=ORGS.map(o=>`
+    <div class="org-card">
+      <div class="org-icon">${o.icon}</div>
+      <div class="org-name">${o.name}</div>
+      <div class="org-desc">${o.desc}</div>
+      <div class="org-stats">
+        ${o.rp?`<span class="stat-pill stat-RP">RP: ${o.rp}</span>`:''}
+        ${o.r?`<span class="stat-pill stat-R">R: ${o.r}</span>`:''}
+        <span class="stat-pill stat-A">A: ${o.a}</span>
+      </div>
+    </div>`).join('');
+}
+
+function showTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+function filterPhase(f,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderMatrix(f);
+}
+
+renderMatrix('all');
+renderOrgs();
+</script>
+</body>
+</html>
